@@ -26,16 +26,15 @@ export default function Footer({ state, onAdminOpen }) {
           <a href="#top">Back to top ↑</a>
         </div>
         <div>
-          <h4>ADMIN</h4>
-          <a href="#" id="footAdmin" onClick={e => { e.preventDefault(); onAdminOpen(); }}>⚙ Admin settings &amp; requests</a>
-          <p style={{ color: 'var(--dim)', fontSize: '.78rem', marginTop: '6px' }}>
-            Authorised access only — sign in to view machine requests and edit site content.
+          <h4>COMPANY</h4>
+          <p style={{ color: 'var(--mut)', fontSize: '.86rem', lineHeight: 1.7 }}>
+            KRS KING (PVT) LTD · Falcon ICM · Panther EC · Phoenix IA. Precision engineering and civil infrastructure built to order from Ratnapura across Sri Lanka.
           </p>
         </div>
       </div>
       <div className="wrap foot-bar">
-        <span>© {year} {name} · HANDMADE IN SRI LANKA</span>
-        <span>STAFF ACCESS — <a href="#" id="footGear" onClick={e => { e.preventDefault(); onAdminOpen(); }}>⚙ ADMIN PANEL</a></span>
+        <span>© {year} {name} · SRI LANKA</span>
+        <span>All Rights Reserved · <a href="#admin" onClick={e => { e.preventDefault(); onAdminOpen(); }} style={{ color: 'var(--dim)', textDecoration: 'none', opacity: 0.7 }} title="Authorized personnel only">Staff Login</a></span>
       </div>
     </footer>
   );

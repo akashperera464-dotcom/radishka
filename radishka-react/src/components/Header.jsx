@@ -32,7 +32,6 @@ export default function Header({ state, scrolled, onAdminOpen }) {
           <a href="#request" className="btn btn-solid" style={{ padding: '11px 20px' }} onClick={() => setMenuOpen(false)}>
             {state.hero?.cta1 || 'Request a Quote'}
           </a>
-          <a href="#" id="navAdmin" title="Admin settings" onClick={(e) => { e.preventDefault(); setMenuOpen(false); onAdminOpen(); }}>⚙ ADMIN</a>
         </nav>
         <button id="burger" aria-label="Menu" aria-expanded={menuOpen} onClick={() => setMenuOpen(v => !v)}>☰</button>
       </div>

@@ -69,7 +69,6 @@ export default function Hero({ state }) {
           <i className="spark" style={{ left: '38%', bottom: '4%', animationDelay: '3.1s' }}></i>
         </div>
       </div>
-      <div className="wrap scroll-cue"><i></i> SCROLL</div>
     </section>
   );
 }

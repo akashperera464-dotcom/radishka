@@ -74,17 +74,33 @@ export default function App() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Keyboard escape → close drawer or lightbox
+  // Keyboard escape → close drawer or lightbox; Ctrl+Shift+A → toggle admin
   useEffect(() => {
     const onKey = (e) => {
       if (e.key === 'Escape') {
         if (lightboxImage) setLightboxImage(null);
         else setDrawerOpen(false);
       }
+      if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'A' || e.key === 'a')) {
+        e.preventDefault();
+        setDrawerOpen(v => !v);
+      }
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, [lightboxImage]);
+
+  // Check URL #admin hash (e.g. visiting krsking.netlify.app/#admin opens admin)
+  useEffect(() => {
+    const checkHash = () => {
+      if (window.location.hash === '#admin') {
+        setDrawerOpen(true);
+      }
+    };
+    checkHash();
+    window.addEventListener('hashchange', checkHash);
+    return () => window.removeEventListener('hashchange', checkHash);
+  }, []);
 
   // Firebase init
   useEffect(() => {
@@ -151,13 +167,6 @@ export default function App() {
       <div className="fabs">
         {/* WhatsApp CTA button */}
         <WhatsAppButton phone={whatsappNumber} />
-
-        {/* Admin gear button */}
-        <button className="fab fab-gear" aria-label="Admin settings" title="Admin settings" onClick={() => setDrawerOpen(true)}>
-          <svg viewBox="0 0 24 24">
-            <path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8zm9.4 5.2-2.1.4c-.1.5-.3 1-.5 1.4l1.2 1.8-1.7 1.7-1.8-1.2c-.4.2-.9.4-1.4.5l-.4 2.1h-2.4l-.4-2.1c-.5-.1-1-.3-1.4-.5L8.7 18.5 7 16.8l1.2-1.8c-.2-.4-.4-.9-.5-1.4l-2.1-.4v-2.4l2.1-.4c.1-.5.3-1 .5-1.4L7 7.2 8.7 5.5l1.8 1.2c.4-.2.9-.4 1.4-.5l.4-2.1h2.4l.4 2.1c.5.1 1 .3 1.4.5l1.8-1.2 1.7 1.7-1.2 1.8c.2.4.4.9.5 1.4l2.1.4v2.4z"/>
-          </svg>
-        </button>
       </div>
 
       <AdminDrawer

@@ -61,7 +61,7 @@ export default function RequestForm({ state, onSubmit, onAdminOpen }) {
               <span>{sending ? 'Sending…' : 'Send request'}</span> <span className="ar">→</span>
             </button>
             <p className="s-hint" style={{ marginTop: '14px' }}>
-              Your request goes straight to our workshop admin panel and is saved securely to our Firebase database. We answer usually within a day.
+              Your request is routed directly to our engineering desk. A technical lead will evaluate your specifications and follow up within 24 business hours.
             </p>
             <p className="s-hint" style={{ marginTop: '8px' }}>
               Workshop staff: <a href="#" id="formAdmin" style={{ color: 'var(--brass)' }} onClick={e => { e.preventDefault(); onAdminOpen(); }}>⚙ open admin / settings</a>

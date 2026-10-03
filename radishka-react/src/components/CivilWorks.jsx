@@ -13,10 +13,10 @@ export default function CivilWorks({ onImageClick }) {
         <div className="civil-grid reveal">
           <div>
             <p style={{ color: 'var(--mut)', fontSize: '1.05rem', lineHeight: 1.8, marginBottom: '20px' }}>
-              Our construction division — Panther EC — handles residential, commercial, and agricultural projects across the island, from foundations to finishing. Falcon ICM takes care of planning and management, so one team carries your project from survey to handover.
+              Our construction division—Panther EC—executes residential, commercial, and agricultural infrastructure across the island, from structural foundation works to final architectural handover. Falcon ICM provides integrated project management, engineering supervision, and cost control under a single accountable contract.
             </p>
             <p style={{ color: 'var(--mut)', fontSize: '1.05rem', lineHeight: 1.8, marginBottom: '30px' }}>
-              Whether it&apos;s a new building, a retaining wall, a drainage system, or a complete renovation — the same engineering precision and honest timelines that define our machine workshop.
+              Whether delivering multi-story commercial facilities, reinforced retaining structures, agricultural warehouses, or industrial drainage systems, we ensure rigorous structural compliance, transparent milestones, and superior engineering precision.
             </p>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
               {[

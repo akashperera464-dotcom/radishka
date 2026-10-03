@@ -46,8 +46,8 @@ export default function Hero({ state }) {
           </div>
           <div className="hero-meta">
             <span>{s.since || 'EST. 2013'}</span>
-            <span>ONE-OFF BUILDS</span>
-            <span>ISLAND-WIDE DELIVERY</span>
+            <span>BESPOKE ENGINEERING</span>
+            <span>ISLAND-WIDE COMMISSIONING</span>
           </div>
         </div>
         <div className="rig-wrap" id="rigWrap" ref={rigRef}>

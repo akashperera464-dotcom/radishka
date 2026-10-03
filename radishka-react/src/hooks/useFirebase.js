@@ -1,6 +1,7 @@
 import { useState, useCallback, useRef } from 'react';
-import { getDoc, setDoc, onSnapshot, addDoc, getDocs, query, orderBy, limit, serverTimestamp } from 'firebase/firestore';
-import { SITE_DOC, REQUESTS_COL } from '../firebase';
+import { getDoc, setDoc, onSnapshot, addDoc, getDocs, deleteDoc, doc, query, orderBy, limit, serverTimestamp } from 'firebase/firestore';
+import { SITE_DOC, REQUESTS_COL, FEEDBACK_COL } from '../firebase';
+import { db } from '../firebase';
 import { DEFAULT, clone, deepMerge, RKEY } from '../defaultContent';
 
 function needsRules(e) {
@@ -110,10 +111,51 @@ export function useFirebase() {
     }
   }, []);
 
+  const submitFeedback = useCallback(async ({ name, role, message, rating }) => {
+    try {
+      await addDoc(FEEDBACK_COL, {
+        name: name || 'Anonymous',
+        role: role || '',
+        message,
+        rating: Number(rating) || 5,
+        created: serverTimestamp(),
+        approved: true,
+      });
+      return { ok: true };
+    } catch (err) {
+      console.warn('Failed to save feedback', err);
+      return { ok: false };
+    }
+  }, []);
+
+  const loadFeedback = useCallback(async () => {
+    try {
+      let snap;
+      try { snap = await getDocs(query(FEEDBACK_COL, orderBy('created', 'desc'), limit(50))); }
+      catch (e) { snap = await getDocs(FEEDBACK_COL); }
+      const items = [];
+      snap.forEach(d => items.push({ id: d.id, ...d.data() }));
+      return { items, error: '' };
+    } catch (e) {
+      return { items: [], error: 'Could not load feedback.' };
+    }
+  }, []);
+
+  const deleteFeedback = useCallback(async (id) => {
+    try {
+      await deleteDoc(doc(db, 'feedback', id));
+      return { ok: true };
+    } catch (e) {
+      console.warn('Delete feedback failed', e);
+      return { ok: false };
+    }
+  }, []);
+
   return {
     state, setState, stateRef,
     firebaseReady, contentError,
     loadFromFirebase, saveToFirebase,
     listenToFirebase, submitRequest, loadRequests,
+    submitFeedback, loadFeedback, deleteFeedback,
   };
 }

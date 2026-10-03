@@ -17,3 +17,4 @@ export const analytics = getAnalytics(app);
 export const db = getFirestore(app);
 export const SITE_DOC = doc(db, 'site', 'content');
 export const REQUESTS_COL = collection(db, 'requests');
+export const FEEDBACK_COL = collection(db, 'feedback');

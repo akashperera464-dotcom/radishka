@@ -22,7 +22,7 @@ export default function RequestForm({ state, onSubmit, onAdminOpen }) {
       <div className="wrap">
         <div className="req-grid">
           <div className="reveal">
-            <p className="overline">/// START YOUR PROJECT · <span className="si" style={{ letterSpacing: 0 }}>මැෂින් එකක් ඕනද?</span></p>
+            <p className="overline">/// START YOUR PROJECT · <span className="si" style={{ letterSpacing: 0 }}>ඔබේ ව්‍යාපෘතිය අරඹන්න</span></p>
             <h2 className="sec-t" data-scramble data-txt="REQUEST A QUOTE">REQUEST A QUOTE</h2>
             <p className="hero-sub" style={{ marginTop: '18px' }}>
               Describe the job — a machine that doesn&apos;t exist yet, a technical solution, or a construction project. You&apos;ll get an honest answer and a fixed quote, usually within a day.
@@ -46,15 +46,15 @@ export default function RequestForm({ state, onSubmit, onAdminOpen }) {
               <input id="rName" name="name" required placeholder="Nimal Perera" value={form.name} onChange={handleChange} />
             </div>
             <div className="f-row">
-              <label htmlFor="rPhone">Phone · දුරකථන</label>
+              <label htmlFor="rPhone">Phone · දුරකථන අංකය</label>
               <input id="rPhone" name="phone" required placeholder="07X XXX XXXX" value={form.phone} onChange={handleChange} />
             </div>
             <div className="f-row">
-              <label htmlFor="rIdea">What do you need? · ඕන මැෂින් හෝ වැඩ</label>
+              <label htmlFor="rIdea">Required machine / service · අවශ්‍ය යන්ත්‍රය හෝ සේවාව</label>
               <input id="rIdea" name="idea" required placeholder="e.g. A machine to grind cardamom without heating it" value={form.idea} onChange={handleChange} />
             </div>
             <div className="f-row">
-              <label htmlFor="rMsg">Details · වැඩිදුර තොරතුරු</label>
+              <label htmlFor="rMsg">Project details · ව්‍යාපෘති විස්තරය</label>
               <textarea id="rMsg" name="msg" placeholder="Capacity, space, budget — anything that helps" value={form.msg} onChange={handleChange}></textarea>
             </div>
             <button className="btn btn-solid" type="submit" id="reqSubmit" disabled={sending}>

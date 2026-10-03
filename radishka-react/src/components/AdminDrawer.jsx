@@ -88,12 +88,16 @@ function AuthGate({ onLogin }) {
   );
 }
 
-export default function AdminDrawer({ open, state, setState, onClose, loggedIn, adminUser, tryLogin, logout, contentError, loadRequests, saveToFirebase, showToast }) {
+export default function AdminDrawer({ open, state, setState, onClose, loggedIn, adminUser, tryLogin, logout, contentError, loadRequests, saveToFirebase, showToast, loadFeedback, deleteFeedback }) {
   const [requests, setRequests] = useState([]);
   const [reqError, setReqError] = useState('');
   const [reqLoading, setReqLoading] = useState(false);
   const [viewReq, setViewReq] = useState(null);
   const [savedVisible, setSavedVisible] = useState(false);
+  const [feedbackItems, setFeedbackItems] = useState([]);
+  const [feedbackLoading, setFeedbackLoading] = useState(false);
+  const [feedbackError, setFeedbackError] = useState('');
+  const [deletingFb, setDeletingFb] = useState(null);
   const savedTimer = useRef(null);
   const importRef = useRef(null);
 
@@ -153,6 +157,28 @@ export default function AdminDrawer({ open, state, setState, onClose, loggedIn, 
     setReqError(error);
     setReqLoading(false);
     showToast(error ? 'Could not load requests' : `${items.length} request(s) loaded`);
+  };
+
+  const handleRefreshFeedback = async () => {
+    setFeedbackLoading(true);
+    const { items, error } = await loadFeedback();
+    setFeedbackItems(items);
+    setFeedbackError(error);
+    setFeedbackLoading(false);
+    showToast(error ? 'Could not load feedback' : `${items.length} feedback item(s) loaded`);
+  };
+
+  const handleDeleteFeedback = async (id) => {
+    if (!window.confirm('Remove this feedback permanently?')) return;
+    setDeletingFb(id);
+    const { ok } = await deleteFeedback(id);
+    if (ok) {
+      setFeedbackItems(prev => prev.filter(f => f.id !== id));
+      showToast('Feedback removed');
+    } else {
+      showToast('Could not delete — check connection');
+    }
+    setDeletingFb(null);
   };
 
   const handleExport = () => {
@@ -286,6 +312,37 @@ export default function AdminDrawer({ open, state, setState, onClose, loggedIn, 
                     }
                   </div>
                   <p className="s-hint" style={{ marginTop: '10px' }}>Every request sent from the website form is stored in Firebase and listed here.</p>
+                </div>
+              </details>
+
+              {/* Feedback manager */}
+              <details className="s-acc">
+                <summary>💬 CUSTOMER FEEDBACK</summary>
+                <div className="s-in">
+                  <button className="s-add" onClick={handleRefreshFeedback} disabled={feedbackLoading}>
+                    {feedbackLoading ? '⟳ Loading…' : '⟳ REFRESH FEEDBACK'}
+                  </button>
+                  {feedbackError && <div className="req-log" style={{ borderColor: '#ff7676', marginTop: '8px' }}><b style={{ color: '#ff9a9a' }}>⚠ {feedbackError}</b></div>}
+                  <div className="req-log" style={{ marginTop: '8px', maxHeight: '260px' }}>
+                    {feedbackItems.length === 0
+                      ? <i>No feedback loaded. Press refresh to load from Firebase.</i>
+                      : feedbackItems.map(fb => (
+                        <div key={fb.id} className="req-item">
+                          <div className="rt">{'★'.repeat(fb.rating || 5)} · {fb.name} {fb.role ? `· ${fb.role}` : ''}</div>
+                          <p style={{ margin: '4px 0', fontSize: '.85rem' }}>{fb.message}</p>
+                          <button
+                            className="fb-del-btn"
+                            style={{ marginTop: '6px' }}
+                            onClick={() => handleDeleteFeedback(fb.id)}
+                            disabled={deletingFb === fb.id}
+                          >
+                            {deletingFb === fb.id ? 'Removing…' : '✕ Remove'}
+                          </button>
+                        </div>
+                      ))
+                    }
+                  </div>
+                  <p className="s-hint" style={{ marginTop: '8px' }}>Customer feedback is stored in the Firebase "feedback" collection. Remove inappropriate entries here.</p>
                 </div>
               </details>
 

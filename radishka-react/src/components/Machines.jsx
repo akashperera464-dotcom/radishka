@@ -42,7 +42,7 @@ export default function Machines({ state, onImageClick }) {
       <div className="wrap">
         <div className="sec-head reveal">
           <div>
-            <p className="overline">/// THE BUILD LOG · <span className="si" style={{ letterSpacing: 0 }}>හදපු මැෂින්</span></p>
+            <p className="overline">/// THE BUILD LOG · <span className="si" style={{ letterSpacing: 0 }}>අපගේ නිෂ්පාදන එකතුව</span></p>
             <h2 className="sec-t" data-scramble data-txt="MACHINES WE'VE BUILT">MACHINES WE&apos;VE BUILT</h2>
           </div>
           <div className="chips" id="chips">

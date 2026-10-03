@@ -26,7 +26,7 @@ export default function Process({ state }) {
       <div className="wrap proc-grid">
         <div className="proc-left">
           <div className="proc-sticky reveal">
-            <p className="overline">/// HOW IT WORKS · <span className="si" style={{ letterSpacing: 0 }}>හදන හැටි</span></p>
+            <p className="overline">/// HOW IT WORKS · <span className="si" style={{ letterSpacing: 0 }}>කාර්ය පටිපාටිය</span></p>
             <h2 className="sec-t" data-scramble data-txt="FROM IDEA TO IRON">FROM IDEA TO IRON</h2>
             <div className="proc-num">
               <span id="procNum">{String(activeStep + 1).padStart(2, '0')}</span>

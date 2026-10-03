@@ -5,7 +5,7 @@ export default function CivilWorks({ onImageClick }) {
       <div className="wrap">
         <div className="sec-head reveal">
           <div>
-            <p className="overline">/// CIVIL WORKS · <span className="si" style={{ letterSpacing: 0 }}>සිවිල් වැඩ</span></p>
+            <p className="overline">/// CIVIL WORKS · <span className="si" style={{ letterSpacing: 0 }}>සිවිල් ඉංජිනේරු ඉදිකිරීම්</span></p>
             <h2 className="sec-t" data-scramble data-txt="BUILDING SRI LANKA">BUILDING SRI LANKA</h2>
           </div>
           <span className="num">03</span>

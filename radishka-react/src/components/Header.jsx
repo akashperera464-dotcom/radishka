@@ -27,6 +27,7 @@ export default function Header({ state, scrolled, onAdminOpen }) {
           <a href="#civil" onClick={() => setMenuOpen(false)}>CIVIL</a>
           <a href="#process" onClick={() => setMenuOpen(false)}>PROCESS</a>
           <a href="#about" onClick={() => setMenuOpen(false)}>ABOUT</a>
+          <a href="#feedback" onClick={() => setMenuOpen(false)}>FEEDBACK</a>
           <a href="#faq" onClick={() => setMenuOpen(false)}>FAQ</a>
           <a href="#request" className="btn btn-solid" style={{ padding: '11px 20px' }} onClick={() => setMenuOpen(false)}>
             {state.hero?.cta1 || 'Request a Quote'}

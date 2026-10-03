@@ -5,7 +5,7 @@ export default function Services({ state }) {
       <div className="wrap">
         <div className="sec-head reveal">
           <div>
-            <p className="overline">/// WHAT WE DO · <span className="si" style={{ letterSpacing: 0 }}>අපේ සේවාවන්</span></p>
+            <p className="overline">/// WHAT WE DO · <span className="si" style={{ letterSpacing: 0 }}>අපගේ සේවාවන්</span></p>
             <h2 className="sec-t" data-scramble data-txt="WORKSHOP SERVICES">WORKSHOP SERVICES</h2>
           </div>
           <span className="num">04</span>

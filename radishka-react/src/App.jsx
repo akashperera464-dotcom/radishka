@@ -23,6 +23,7 @@ import AdminDrawer from './components/AdminDrawer';
 import Toast from './components/Toast';
 import ImageLightbox from './components/ImageLightbox';
 import WhatsAppButton from './components/WhatsAppButton';
+import Feedback from './components/Feedback';
 
 const REDUCED = typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -32,6 +33,7 @@ export default function App() {
     contentError, firebaseReady,
     loadFromFirebase, saveToFirebase,
     listenToFirebase, submitRequest, loadRequests,
+    submitFeedback, loadFeedback, deleteFeedback,
   } = useFirebase();
 
   const { loggedIn, tryLogin, logout, adminUser } = useAdmin();
@@ -135,6 +137,12 @@ export default function App() {
       <Services state={state} />
       <About state={state} />
       <Testimonials state={state} />
+      <Feedback
+        submitFeedback={submitFeedback}
+        loadFeedback={loadFeedback}
+        deleteFeedback={deleteFeedback}
+        isAdmin={loggedIn}
+      />
       <Faq state={state} />
       <RequestForm state={state} onSubmit={handleSubmitRequest} onAdminOpen={() => setDrawerOpen(true)} />
       <Footer state={state} onAdminOpen={() => setDrawerOpen(true)} />
@@ -165,6 +173,8 @@ export default function App() {
         loadRequests={loadRequests}
         saveToFirebase={saveToFirebase}
         showToast={showToast}
+        loadFeedback={loadFeedback}
+        deleteFeedback={deleteFeedback}
       />
 
       {/* Image Lightbox */}

@@ -38,7 +38,7 @@ export default function Faq({ state }) {
       <div className="wrap" style={{ maxWidth: '860px' }}>
         <div className="sec-head reveal">
           <div>
-            <p className="overline">/// QUESTIONS · <span className="si" style={{ letterSpacing: 0 }}>අහන දේවල්</span></p>
+            <p className="overline">/// FREQUENTLY ASKED QUESTIONS · <span className="si" style={{ letterSpacing: 0 }}>නිතර අසන ප්‍රශ්න</span></p>
             <h2 className="sec-t" data-scramble data-txt="ASKED ALL THE TIME">ASKED ALL THE TIME</h2>
           </div>
         </div>

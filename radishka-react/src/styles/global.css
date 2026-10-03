@@ -535,6 +535,48 @@ footer{background:#07080b;border-top:1px solid var(--line);padding:80px 0 0}
 .map-header a:hover{text-decoration:underline}
 .map-frame{width:100%;height:320px;border:0;display:block;filter:invert(90%) hue-rotate(180deg) contrast(1.1) brightness(0.9)}
 
+/* ============ IMPROVED SINHALA TEXT ============ */
+.si{font-family:'Noto Sans Sinhala',var(--fb);font-weight:600;letter-spacing:0 !important}
+.overline .si{color:var(--brass);opacity:1;font-size:.78rem;font-weight:600}
+.band-si{font-weight:800 !important;font-size:clamp(1.15rem,3vw,1.55rem) !important;color:var(--bone) !important;opacity:1 !important;letter-spacing:.01em !important;line-height:1.45 !important}
+
+/* ============ FEEDBACK SECTION ============ */
+.fb-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:44px}
+@media(max-width:900px){.fb-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.fb-grid{grid-template-columns:1fr}}
+.fb-card{background:var(--panel);border:1px solid var(--line2);border-radius:8px;padding:26px 24px;display:flex;flex-direction:column;gap:14px;position:relative;transition:border-color .25s,transform .25s}
+.fb-card:hover{border-color:var(--ember);transform:translateY(-3px)}
+.fb-card-stars{font-size:1.1rem;color:var(--ember);letter-spacing:2px}
+.fb-dim-stars{color:var(--line2)}
+.fb-msg{color:var(--mut);font-size:.93rem;line-height:1.7;flex:1;font-style:italic}
+.fb-who{display:flex;flex-direction:column;gap:2px;margin-top:auto}
+.fb-who b{font-family:var(--fd);font-weight:700;font-size:1.05rem;letter-spacing:.04em;color:var(--bone)}
+.fb-who span{font-family:var(--fm);font-size:.62rem;letter-spacing:.18em;color:var(--brass)}
+.fb-del-btn{background:none;border:1px solid #ff767666;color:#ff9a9a;font-family:var(--fm);font-size:.6rem;letter-spacing:.14em;padding:6px 12px;border-radius:4px;align-self:flex-start;transition:.2s}
+.fb-del-btn:hover{background:#ff767622;border-color:#ff7676}
+.fb-del-btn:disabled{opacity:.5;cursor:not-allowed}
+.fb-loading,.fb-empty{color:var(--dim);font-family:var(--fm);font-size:.78rem;letter-spacing:.14em;padding:36px 0;text-align:center}
+.fb-cta-wrap{display:flex;flex-direction:column;align-items:center;gap:18px;padding:20px 0}
+.fb-success{background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.35);color:#7ed09a;font-family:var(--fm);font-size:.74rem;letter-spacing:.12em;padding:14px 22px;border-radius:6px;text-align:center;width:100%;max-width:620px}
+.fb-form{background:var(--panel);border:1px solid var(--line2);border-radius:10px;padding:28px 26px;width:100%;max-width:680px;display:flex;flex-direction:column;gap:18px}
+.fb-form-head{display:flex;justify-content:space-between;align-items:center}
+.fb-form-head b{font-family:var(--fm);font-size:.68rem;letter-spacing:.2em;color:var(--brass);text-transform:uppercase}
+.fb-form-close{background:none;border:1px solid var(--line2);color:var(--mut);width:30px;height:30px;border-radius:4px;font-size:.9rem;transition:.2s}
+.fb-form-close:hover{border-color:#ff7676;color:#ff9a9a}
+.fb-form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:560px){.fb-form-row{grid-template-columns:1fr}}
+.fb-form-field{display:flex;flex-direction:column;gap:6px}
+.fb-form-field label{font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;color:var(--dim);text-transform:uppercase}
+.fb-req{color:var(--ember)}
+.fb-form-field input,.fb-form-field textarea{background:var(--bg);border:1px solid var(--line2);border-radius:4px;color:var(--bone);padding:10px 13px;font-family:var(--fb);font-size:.9rem;transition:border-color .2s}
+.fb-form-field input:focus,.fb-form-field textarea:focus{outline:0;border-color:var(--ember)}
+.fb-form-field textarea{resize:vertical;min-height:90px}
+.fb-stars{display:flex;flex-direction:row-reverse;gap:4px;justify-content:flex-end}
+.fb-star{background:none;border:none;font-size:1.6rem;color:var(--line2);padding:0 2px;transition:color .15s,transform .15s;line-height:1}
+.fb-star.lit{color:var(--ember)}
+.fb-star:hover{transform:scale(1.2)}
+.fb-form-actions{display:flex;gap:12px;justify-content:flex-end;flex-wrap:wrap}
+
 /* ============ HIDE NETLIFY BADGE / DRAWER ============ */
 iframe[src*="netlify"],
 iframe[id*="netlify"],

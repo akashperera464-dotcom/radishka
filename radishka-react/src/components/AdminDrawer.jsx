@@ -124,16 +124,16 @@ export default function AdminDrawer({ open, state, setState, onClose, loggedIn, 
   };
 
   const handleListAction = (act, listPath, idx) => {
-    setState(prev => {
-      const next = clone(prev);
-      const arr = getPath(next, listPath);
-      if (act === 'add') arr.push(clone(TPL[listPath]));
-      else if (act === 'del') { if (!window.confirm('Delete this item?')) return prev; arr.splice(idx, 1); }
-      else if (act === 'up') { if (idx > 0) [arr[idx], arr[idx-1]] = [arr[idx-1], arr[idx]]; }
-      else if (act === 'down') { if (idx < arr.length - 1) [arr[idx], arr[idx+1]] = [arr[idx+1], arr[idx]]; }
-      return next;
-    });
-    saveToFirebase(state).then(flashSaved);
+    const next = clone(state);
+    const arr = getPath(next, listPath);
+    let changed = true;
+    if (act === 'add') arr.push(clone(TPL[listPath]));
+    else if (act === 'del') { if (!window.confirm('Delete this item?')) return; arr.splice(idx, 1); }
+    else if (act === 'up') { if (idx > 0) [arr[idx], arr[idx-1]] = [arr[idx-1], arr[idx]]; else changed = false; }
+    else if (act === 'down') { if (idx < arr.length - 1) [arr[idx], arr[idx+1]] = [arr[idx+1], arr[idx]]; else changed = false; }
+    if (!changed) return;
+    setState(next);
+    saveToFirebase(next).then(flashSaved);
     showToast(act === 'add' ? 'Item added' : act === 'del' ? 'Item deleted' : 'Reordered');
   };
 
@@ -196,8 +196,9 @@ export default function AdminDrawer({ open, state, setState, onClose, loggedIn, 
     r.onload = () => {
       try {
         const obj = JSON.parse(r.result);
-        setState(deepMerge(clone(DEFAULT), obj));
-        saveToFirebase(state).then(flashSaved);
+        const next = deepMerge(clone(DEFAULT), obj);
+        setState(next);
+        saveToFirebase(next).then(flashSaved);
         showToast('Content imported ✓');
       } catch (_) { showToast('Invalid JSON file'); }
     };

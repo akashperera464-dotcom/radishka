@@ -66,9 +66,9 @@ export const DEFAULT = {
     { t:'On-Site Commissioning & Support', si:'භාරදීම සහ පසු සේවා සහාය', d:'Nationwide turnkey delivery, on-site commissioning, crew safety training, and guaranteed availability of replacement parts.' },
   ],
   stats: [
-    { v:'120', s:'+', l:'Machines built' },
-    { v:'12', s:'yrs', l:'In the workshop' },
-    { v:'15', s:'', l:'Districts served' },
+    { v:'20', s:'+', l:'Machines built' },
+    { v:'5', s:'yrs', l:'In the workshop' },
+    { v:'10', s:'', l:'Districts served' },
     { v:'100', s:'%', l:'Custom solutions reviewed' },
   ],
   services: [

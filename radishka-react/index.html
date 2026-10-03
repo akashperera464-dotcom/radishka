@@ -39,6 +39,23 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      (function() {
+        function killDrawer() {
+          var targets = document.querySelectorAll(
+            'iframe[src*="netlify"], iframe[id*="netlify"], [data-netlify-drawer], netlify-drawer, #netlify-drawer, div[class*="netlify-drawer"], div[class*="netlify-feedback"]'
+          );
+          targets.forEach(function(el) { el.remove(); });
+        }
+        killDrawer();
+        window.addEventListener('DOMContentLoaded', killDrawer);
+        window.addEventListener('load', killDrawer);
+        if (window.MutationObserver) {
+          var mo = new MutationObserver(killDrawer);
+          mo.observe(document.documentElement, { childList: true, subtree: true });
+        }
+      })();
+    </script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

@@ -1,4 +1,5 @@
-export default function CivilWorks() {
+export default function CivilWorks({ onImageClick }) {
+  const civilImg = "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1200&auto=format&fit=crop";
   return (
     <section className="sec" id="civil" style={{ background: 'var(--bg2)', borderBlock: '1px solid var(--line)' }}>
       <div className="wrap">
@@ -32,9 +33,18 @@ export default function CivilWorks() {
             </div>
           </div>
           <div className="feat-frame reveal" style={{ '--d': '140ms' }}>
-            <div className="feat-imgbox">
+            <div
+              className="feat-imgbox"
+              onClick={() => onImageClick?.({
+                src: civilImg,
+                title: 'Civil Construction & Infrastructure',
+                si: 'සිවිල් ඉදිකිරීම්',
+                desc: 'Residential, Commercial and Agricultural civil works by Panther EC & Falcon ICM across Sri Lanka.'
+              })}
+              title="Click to view full image"
+            >
               <img
-                src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1200&auto=format&fit=crop"
+                src={civilImg}
                 alt="Civil construction site in Sri Lanka"
               />
             </div>

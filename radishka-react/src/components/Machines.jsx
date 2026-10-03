@@ -25,7 +25,7 @@ function attachTilt(container) {
   });
 }
 
-export default function Machines({ state }) {
+export default function Machines({ state, onImageClick }) {
   const machines = state.machines || [];
   const cats = ['All', ...new Set(machines.map(m => m.cat || 'Other'))];
   const [activeCat, setActiveCat] = useState('All');
@@ -71,7 +71,17 @@ export default function Machines({ state }) {
                 style={{ '--d': `${(i % 3) * 90}ms` }}
               >
                 <div className="m-tilt">
-                  <div className="m-img">
+                  <div
+                    className="m-img"
+                    onClick={() => onImageClick?.({
+                      src: img,
+                      title: m.name,
+                      si: m.si,
+                      desc: m.desc,
+                      spec: m.spec
+                    })}
+                    title="Click to view full image"
+                  >
                     <img loading="lazy" src={img} alt={m.name} onError={e => { e.target.src = FALLBACK_IMG; }} />
                     <span className="m-cat">{m.cat || 'CUSTOM'}</span>
                   </div>

@@ -13,7 +13,11 @@ export default function Header({ state, scrolled, onAdminOpen }) {
     <header id="hdr" className={scrolled ? 'scrolled' : ''}>
       <div className="wrap hd">
         <a className="logo" href="#top">
-          <GearIcon />
+          {state.site?.logoUrl ? (
+            <img src={state.site.logoUrl} alt={state.site?.name || 'KRS KING'} className="logo-img" />
+          ) : (
+            <GearIcon />
+          )}
           <span className="logo-txt">
             <b>{state.site?.name || 'KRS KING (PVT) LTD'}</b>
             <span className="si">{state.site?.nameSi || 'KRS කිං (පුද්) සමාගම'}</span>

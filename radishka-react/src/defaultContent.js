@@ -4,6 +4,7 @@ export const DEFAULT = {
     nameSi: 'KRS කිං (පුද්) සමාගම',
     badge: 'INNOVATIVE ENGINEERING · CONSTRUCTION · AGRICULTURE · MANAGEMENT · SRI LANKA',
     since: 'EST. 2013',
+    logoUrl: '',
     bandEn1: 'NO MACHINE FOR IT?',
     bandEn2: 'THEN WE BUILD ONE.',
     bandSi: 'නැති මැෂින් හදන එක තමයි අපේ වැඩේ.',
@@ -38,9 +39,12 @@ export const DEFAULT = {
   },
   contact: {
     phone: '+94 76 159 9289',
+    whatsapp: '+94 76 159 9289',
     email: 'hello@krsking.lk',
     address: 'Wewalwatta, Ratnapura, Sri Lanka',
     hours: 'Mon–Sat · 8.00 – 18.00',
+    mapLat: 6.705659429768915,
+    mapLng: 80.55773376535957,
   },
   ticker: [
     'FALCON ICM','PANTHER EC','PHOENIX IA','CARDAMOM GRINDER','COCONUT DE-HUSKER',

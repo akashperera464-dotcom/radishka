@@ -1,6 +1,6 @@
 const FALLBACK_IMG = 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?q=80&w=1200&auto=format&fit=crop';
 
-export default function FeaturedBuild({ state }) {
+export default function FeaturedBuild({ state, onImageClick }) {
   const f = state.featured || {};
   const specsLines = String(f.specs || '').split('\n').map(line => {
     const i = line.indexOf(':');
@@ -23,7 +23,17 @@ export default function FeaturedBuild({ state }) {
         <div className="feat-grid">
           <div className="feat-frame reveal">
             <span className="stamp">{f.stamp || 'FEATURED BUILD · FILE 001'}</span>
-            <div className="feat-imgbox">
+            <div
+              className="feat-imgbox"
+              onClick={() => onImageClick?.({
+                src: imgSrc,
+                title: f.title || 'Cardamom Grinder',
+                si: f.si,
+                desc: f.story,
+                spec: f.specs ? f.specs.split('\n')[0] : ''
+              })}
+              title="Click to view full image"
+            >
               <img
                 src={imgSrc}
                 onError={e => { e.target.src = FALLBACK_IMG; }}

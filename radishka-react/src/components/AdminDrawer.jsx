@@ -3,12 +3,12 @@ import RequestModal from './RequestModal';
 import { DEFAULT, clone, deepMerge, getPath, setPath, NOIMG, RKEY } from '../defaultContent';
 
 const FIELDS = [
-  { g: 'SITE IDENTITY', f: [['site.name','Company name'],['site.nameSi','Name (Sinhala)'],['site.badge','Hero badge line'],['site.since','Est. label'],['site.bandEn1','Big band line 1'],['site.bandEn2','Big band line 2'],['site.bandSi','Band Sinhala line']] },
+  { g: 'SITE IDENTITY', f: [['site.name','Company name'],['site.nameSi','Name (Sinhala)'],['site.logoUrl','Logo Image URL (Leave blank for animated gear)','image'],['site.badge','Hero badge line'],['site.since','Est. label'],['site.bandEn1','Big band line 1'],['site.bandEn2','Big band line 2'],['site.bandSi','Band Sinhala line']] },
   { g: 'HERO', f: [['hero.kicker','Sinhala tagline under title'],['hero.t1','Title line 1'],['hero.t2','Title line 2'],['hero.sub','Sub-text','textarea'],['hero.cta1','Primary button text'],['hero.cta2','Secondary button text']] },
   { g: 'FEATURED BUILD', f: [['featured.stamp','Stamp label'],['featured.title','Machine name'],['featured.si','Sinhala name'],['featured.quote','Quote (Sinhala)','textarea'],['featured.story','Story paragraph','textarea'],['featured.specs','Specs — one per line as LABEL: value','textarea'],['featured.img','Image URL','image']] },
   { g: 'IMAGES', f: [['images.heroBg','Hero background (optional)','image'],['images.bandImg','Full-width band image','image'],['images.aboutImg','About portrait','image']] },
   { g: 'ABOUT', f: [['about.name','Section title'],['about.p1','Paragraph 1','textarea'],['about.p2','Paragraph 2','textarea'],['about.sign','Signature line']] },
-  { g: 'CONTACT', f: [['contact.phone','Phone'],['contact.email','Email'],['contact.address','Address'],['contact.hours','Opening hours']] },
+  { g: 'CONTACT & LOCATION', f: [['contact.phone','Phone'],['contact.whatsapp','WhatsApp Phone Number'],['contact.email','Email'],['contact.address','Address'],['contact.hours','Opening hours'],['contact.mapLat','Workshop Latitude (e.g. 6.705659)'],['contact.mapLng','Workshop Longitude (e.g. 80.557734)']] },
   { g: 'TICKER', f: [['ticker','Ticker items — one per line','lines']] },
 ];
 
@@ -199,6 +199,33 @@ export default function AdminDrawer({ open, state, setState, onClose, loggedIn, 
   }
   if (!open) prevOpen.current = false;
 
+  const handleUseCurrentLocation = () => {
+    if (!navigator.geolocation) {
+      showToast('Geolocation is not supported by your browser');
+      return;
+    }
+    showToast('Detecting GPS coordinates…');
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        const lat = pos.coords.latitude;
+        const lng = pos.coords.longitude;
+        setState(prev => {
+          const next = clone(prev);
+          if (!next.contact) next.contact = {};
+          next.contact.mapLat = lat;
+          next.contact.mapLng = lng;
+          return next;
+        });
+        setState(s => { saveToFirebase(s).then(flashSaved); return s; });
+        showToast(`Location set: ${lat.toFixed(6)}, ${lng.toFixed(6)} ✓`);
+      },
+      (err) => {
+        showToast(`Could not get location: ${err.message}`);
+      },
+      { enableHighAccuracy: true, timeout: 10000 }
+    );
+  };
+
   const localReqs = (() => { try { return JSON.parse(localStorage.getItem(RKEY) || '[]'); } catch (_) { return []; } })();
   const displayReqs = requests.length ? requests.map(r => ({ ...r, _live: true })) : localReqs.map(r => ({ ...r, _live: false }));
 
@@ -270,6 +297,16 @@ export default function AdminDrawer({ open, state, setState, onClose, loggedIn, 
                     {gr.f.map(([path, label, type]) => (
                       <FieldRow key={path} path={path} label={label} type={type || 'text'} val={getPath(state, path)} onChange={handleFieldChange} />
                     ))}
+                    {gr.g === 'CONTACT & LOCATION' && (
+                      <button
+                        type="button"
+                        className="s-add"
+                        style={{ marginTop: '10px', borderColor: 'var(--brass)', color: 'var(--brass)' }}
+                        onClick={handleUseCurrentLocation}
+                      >
+                        📍 USE CURRENT LOCATION (GEO-LOCATE GPS)
+                      </button>
+                    )}
                   </div>
                 </details>
               ))}

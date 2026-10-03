@@ -1,15 +1,16 @@
-import { NOIMG } from '../defaultContent';
+const FALLBACK_IMG = 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=900&auto=format&fit=crop';
 
 export default function About({ state }) {
   const a = state.about || {};
-  const aboutImg = state.images?.aboutImg;
+  const aboutImg = (state.images?.aboutImg && state.images.aboutImg.trim()) ? state.images.aboutImg : FALLBACK_IMG;
+
   return (
     <section className="sec" id="about">
       <div className="wrap about-grid">
         <figure className="about-frame reveal">
           <img
-            src={aboutImg && aboutImg.trim() ? aboutImg : NOIMG}
-            onError={e => { e.target.src = NOIMG; }}
+            src={aboutImg}
+            onError={e => { e.target.src = FALLBACK_IMG; }}
             alt="Radishka at work"
           />
           <figcaption>ON THE FLOOR · WEWALWATTA, RATNAPURA</figcaption>

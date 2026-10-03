@@ -1,4 +1,31 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
+
+function FaqItem({ q, a, isOpen, onToggle }) {
+  const contentRef = useRef(null);
+  const [maxHeight, setMaxHeight] = useState('0px');
+
+  useEffect(() => {
+    if (contentRef.current) {
+      setMaxHeight(isOpen ? `${contentRef.current.scrollHeight}px` : '0px');
+    }
+  }, [isOpen]);
+
+  return (
+    <div className={`faq-item${isOpen ? ' open' : ''}`}>
+      <button className="faq-q" onClick={onToggle}>
+        {q}
+        <span className="fx">+</span>
+      </button>
+      <div
+        ref={contentRef}
+        className="faq-a"
+        style={{ maxHeight }}
+      >
+        <p>{a}</p>
+      </div>
+    </div>
+  );
+}
 
 export default function Faq({ state }) {
   const faq = state.faq || [];
@@ -16,20 +43,15 @@ export default function Faq({ state }) {
           </div>
         </div>
         <div id="faqList">
-          {faq.map((f, i) => {
-            const isOpen = openIdx === i;
-            return (
-              <div key={i} className={`faq-item${isOpen ? ' open' : ''}`}>
-                <button className="faq-q" onClick={() => toggle(i)}>
-                  {f.q}
-                  <span className="fx">+</span>
-                </button>
-                <div className="faq-a" style={{ maxHeight: isOpen ? '999px' : '0' }}>
-                  <p>{f.a}</p>
-                </div>
-              </div>
-            );
-          })}
+          {faq.map((f, i) => (
+            <FaqItem
+              key={i}
+              q={f.q}
+              a={f.a}
+              isOpen={openIdx === i}
+              onToggle={() => toggle(i)}
+            />
+          ))}
         </div>
       </div>
     </section>

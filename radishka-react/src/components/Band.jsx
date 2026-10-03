@@ -1,6 +1,9 @@
+const FALLBACK_BAND_IMG = 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=1600&auto=format&fit=crop';
+
 export default function Band({ state }) {
   const s = state.site || {};
-  const bandImg = state.images?.bandImg || '';
+  const bandImg = (state.images?.bandImg && state.images.bandImg.trim()) ? state.images.bandImg : FALLBACK_BAND_IMG;
+
   return (
     <section className="band">
       <div

@@ -31,9 +31,12 @@ export default function CivilWorks() {
               ))}
             </div>
           </div>
-          <div className="feat-frame" style={{ '--d': '140ms' }}>
+          <div className="feat-frame reveal" style={{ '--d': '140ms' }}>
             <div className="feat-imgbox">
-              <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1200&auto=format&fit=crop" alt="Civil construction site in Sri Lanka" />
+              <img
+                src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=1200&auto=format&fit=crop"
+                alt="Civil construction site in Sri Lanka"
+              />
             </div>
           </div>
         </div>

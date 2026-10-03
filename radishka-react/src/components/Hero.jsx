@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 
+const FALLBACK_HERO_BG = 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=1600&auto=format&fit=crop';
 const REDUCED = typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 export default function Hero({ state }) {
@@ -21,7 +22,7 @@ export default function Hero({ state }) {
     return () => { rig.removeEventListener('mousemove', onMove); rig.removeEventListener('mouseleave', onLeave); };
   }, []);
 
-  const heroBg = state.images?.heroBg;
+  const heroBg = (state.images?.heroBg && state.images.heroBg.trim()) ? state.images.heroBg : FALLBACK_HERO_BG;
   const s = state.site || {};
   const h = state.hero || {};
 

@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import './styles/global.css';
 import { useFirebase } from './hooks/useFirebase';
 import { useAdmin } from './hooks/useAdmin';
-import { useReveal, useScramble, useCountUp } from './hooks/useReveal';
+import { useReveal, useScramble } from './hooks/useReveal';
 
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -39,10 +39,9 @@ export default function App() {
   const toastTimer = useRef(null);
   const appRef = useRef(null);
 
-  // Reveal / scramble / count-up observers — re-run after every render so new content is picked up
+  // Reveal / scramble observers — re-run after every render so new content is picked up
   useReveal(appRef);
   useScramble(appRef);
-  useCountUp(appRef);
 
   // Scroll: header + progress bar + parallax
   useEffect(() => {

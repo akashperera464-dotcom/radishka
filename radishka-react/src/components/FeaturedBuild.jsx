@@ -1,4 +1,4 @@
-import { NOIMG } from '../defaultContent';
+const FALLBACK_IMG = 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?q=80&w=1200&auto=format&fit=crop';
 
 export default function FeaturedBuild({ state }) {
   const f = state.featured || {};
@@ -7,6 +7,8 @@ export default function FeaturedBuild({ state }) {
     if (i < 1 || !line.trim()) return null;
     return { label: line.slice(0, i).trim(), value: line.slice(i + 1).trim() };
   }).filter(Boolean);
+
+  const imgSrc = (f.img && f.img.trim()) ? f.img : FALLBACK_IMG;
 
   return (
     <section className="sec" id="featured">
@@ -23,8 +25,8 @@ export default function FeaturedBuild({ state }) {
             <span className="stamp">{f.stamp || 'FEATURED BUILD · FILE 001'}</span>
             <div className="feat-imgbox">
               <img
-                src={f.img && f.img.trim() ? f.img : NOIMG}
-                onError={e => { e.target.src = NOIMG; }}
+                src={imgSrc}
+                onError={e => { e.target.src = FALLBACK_IMG; }}
                 alt="Cardamom grinder"
               />
             </div>

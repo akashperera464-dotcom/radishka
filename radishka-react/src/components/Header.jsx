@@ -20,7 +20,6 @@ export default function Header({ state, scrolled, onAdminOpen }) {
           )}
           <span className="logo-txt">
             <b>{state.site?.name || 'KRS KING (PVT) LTD'}</b>
-            <span className="si">{state.site?.nameSi || 'KRS කිං (පුද්) සමාගම'}</span>
           </span>
         </a>
         <nav className={`main${menuOpen ? ' openm' : ''}`} id="nav">

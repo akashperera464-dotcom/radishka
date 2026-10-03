@@ -41,7 +41,14 @@ nav.main a{font-family:var(--fm);font-size:.72rem;letter-spacing:.18em;color:var
 nav.main a::after{content:'';position:absolute;left:0;bottom:0;height:1px;width:0;background:var(--ember);transition:width .3s}
 nav.main a:hover{color:var(--bone)}
 nav.main a:hover::after{width:100%}
-.hd .btn{padding:10px 18px;font-size:.68rem}
+.hd .btn{padding:10px 20px;font-size:.7rem;letter-spacing:.16em}
+nav.main a.btn-solid,
+.hd a.btn-solid,
+.btn-solid{background:var(--ember)!important;color:#042f2e!important;font-weight:700!important}
+nav.main a.btn-solid:hover,
+.hd a.btn-solid:hover,
+.btn-solid:hover{background:var(--ember2)!important;color:#02201f!important;transform:translateY(-2px);box-shadow:0 10px 26px rgba(45,212,191,.45)}
+nav.main a.btn::after{display:none!important}
 #burger{display:none;background:none;border:1px solid var(--line2);color:var(--bone);width:42px;height:42px;font-size:1.1rem;border-radius:4px}
 
 /* buttons */
@@ -493,7 +500,7 @@ footer{background:#07080b;border-top:1px solid var(--line);padding:80px 0 0}
 }
 
 /* ============ CUSTOM LOGO ============ */
-.logo-img{width:36px;height:36px;object-fit:contain;border-radius:4px}
+.logo-img{width:48px;height:48px;object-fit:cover;border-radius:50%;border:2px solid var(--ember);box-shadow:0 0 16px rgba(45,212,191,.35);display:block;flex-shrink:0}
 
 /* ============ FLOATING WHATSAPP CTA ============ */
 .fab-wa{background:#25d366;color:#fff;border:none;box-shadow:0 10px 25px rgba(37,211,102,.4);position:relative}

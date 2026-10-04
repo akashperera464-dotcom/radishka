@@ -82,7 +82,7 @@ export const DEFAULT = {
   testimonials: [
     { q:'අපගේ ව්‍යාපාරික අවශ්‍යතාවයට වෙළඳපොලේ නොතිබූ සුවිශේෂී යන්ත්‍රයක් ඉතා කෙටි කලකින් ඉහළ ප්‍රමිතියකින් යුතුව නිර්මාණය කර දීමට KRS KING ආයතනය සමත් විය.', n:'නුවන් පෙරේරා', r:'කුළුබඩු නිෂ්පාදන ආයතනය · රත්නපුර' },
     { q:'He rebuilt a grinder the import agents had written off — half the price of a new one, and it runs cooler than before.', n:'R. Fernando', r:'Coconut mill · Kurunegala' },
-    { q:'නියමිත කාලයට පෙර භාරදීම සිදු කළා පමණක් නොව ක්‍රියාත්මක කිරීම සහ නඩත්තුව පිළිබඳවත් මනා පුහුණුවක් ලබා දුන්නා. අලෙවියෙන් පසු සේවාව අති විශිෂ්ටයි.', n:'කුමාරිහාමි මහත්මිය', r:'එනසාල් වගාකරු · හපුතලේ' },
+    { q:'නියමිත කාලයට පෙර භාරදීම සිදු කළා පමණක් නොව ක්‍රියාත්මක කිරීම සහ නඩත්තුව පිළිබඳවත් මනා පුහුණුවක් ලබා දුන්නා. අලෙවියෙන් පසු සේවාව අති විශිෂ්ටයි.', n:'ඩී. එම්. චන්ද්‍රිකා', r:'එනසාල් වගාකරු · හපුතලේ' },
   ],
   faq: [
     { q:'Do you engineer bespoke, one-of-a-kind machinery from scratch?', a:'Yes. Custom industrial R&D represents our core specialty. We analyze your operational bottleneck, model the mechanism, conduct material trials, and deliver a production-ready, fully warranted system.' },

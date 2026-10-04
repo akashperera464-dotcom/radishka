@@ -60,9 +60,9 @@ export default function Hero({ state }) {
               </div>
             </div>
           </div>
-          <span className="rig-chip rc1">TORQUE ✓ OK</span>
-          <span className="rig-chip rc2">2.2 kW · TESTED</span>
-          <span className="rig-chip rc3">MADE IN SRI LANKA</span>
+          <span className="rig-chip rc1">PRECISION ENGINEERED</span>
+          <span className="rig-chip rc2">LOAD TESTED</span>
+          <span className="rig-chip rc3">SRI LANKA BUILT</span>
           <i className="spark" style={{ left: '20%', bottom: '10%', animationDelay: '0s' }}></i>
           <i className="spark" style={{ left: '55%', bottom: '6%', animationDelay: '1.2s' }}></i>
           <i className="spark" style={{ left: '75%', bottom: '14%', animationDelay: '2.4s' }}></i>
